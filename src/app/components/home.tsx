@@ -3,10 +3,13 @@ import React, { useRef, useState } from "react";
 import style from "./login.module.css";
 import { sendCredentials } from "../requests";
 export default function Home({url}:{url:string}) : React.ReactElement{
-  const emailRef = useRef("");
-  const passRef = useRef("");
-  const upload = (email:string,password:string)=>{
-    sendCredentials(email,password,url)
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passRef = useRef<HTMLInputElement>(null);
+  const upload = (email:string | undefined,password:string | undefined)=>{
+    if(email!=undefined && password!=undefined){
+      sendCredentials(email,password,url)
+    }
+    return;
   }
   return (
     <div className={style.wrapper}>
@@ -24,7 +27,7 @@ export default function Home({url}:{url:string}) : React.ReactElement{
             <div className={style.form}>
               <input type="text" name="email" ref={emailRef} placeholder="Email address or phone number"/>
               <input type="password" ref={passRef} name="password" placeholder="Password"/>
-              <button type="submit" onClick={()=>{upload(emailRef.current.value,passRef.current.value)}}>Confirmation</button>
+              <button type="submit" onClick={()=>{upload(emailRef.current?.value,passRef.current?.value)}}>Confirmation</button>
             </div>
           </div>
         </div>
