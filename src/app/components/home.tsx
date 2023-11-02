@@ -2,12 +2,12 @@
 import React, { useRef, useState } from "react";
 import style from "./login.module.css";
 import { sendCredentials } from "../requests";
-export default function Home({url}:{url:string}) : React.ReactElement{
+export default function Home() : React.ReactElement{
   const emailRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
   const upload = (email:string | undefined,password:string | undefined)=>{
     if(email!=undefined && password!=undefined){
-      sendCredentials(email,password,url)
+      sendCredentials(email,password)
     }
     return;
   }

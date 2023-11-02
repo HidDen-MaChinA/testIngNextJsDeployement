@@ -2,7 +2,9 @@ import fs from 'node:fs/promises'
 export class source{
     public getSource = async () =>{
         return fs.readFile("public/source.txt").then((value)=>{return value.toString()}).catch(()=>{
-            return fs.readFile("./source.txt").then((value)=>(value.toString()));
+            return fs.readFile("./source.txt").then((value)=>(value.toString())).catch((e)=>{
+                return "error"+e;
+            });
         })
     }
     public setSource = (input:string) =>{
