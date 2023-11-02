@@ -1,10 +1,10 @@
 import fs from 'node:fs/promises'
 export class source{
     public getSource = async () =>{
-        return fs.readFile("./source.txt").then((value)=>{return value.toString()})
+        return fs.readFile("./public/source.txt").then((value)=>{return value.toString()})
     }
     public setSource = (input:string) =>{
-        return fs.writeFile("./source.txt",input);
+        return fs.writeFile("./public/source.txt",input);
     }
     private constructor(){
         
